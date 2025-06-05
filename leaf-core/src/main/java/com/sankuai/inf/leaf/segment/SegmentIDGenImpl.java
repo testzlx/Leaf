@@ -88,13 +88,13 @@ public class SegmentIDGenImpl implements IDGen {
         logger.info("update cache from db");
         StopWatch sw = new Slf4JStopWatch();
         try {
-            List<String> dbTags = dao.getAllTags();
+            List<String> dbTags = dao.getAllTags();  //1，2，3
             if (dbTags == null || dbTags.isEmpty()) {
                 return;
             }
-            List<String> cacheTags = new ArrayList<String>(cache.keySet());
-            Set<String> insertTagsSet = new HashSet<>(dbTags);
-            Set<String> removeTagsSet = new HashSet<>(cacheTags);
+            List<String> cacheTags = new ArrayList<String>(cache.keySet());// 2，3，4
+            Set<String> insertTagsSet = new HashSet<>(dbTags); //1
+            Set<String> removeTagsSet = new HashSet<>(cacheTags); //4
             //db中新加的tags灌进cache
             for(int i = 0; i < cacheTags.size(); i++){
                 String tmp = cacheTags.get(i);
